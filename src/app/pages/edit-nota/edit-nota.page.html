@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>editNota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+    <ion-item>
+      <ion-input type="text" 
+      formControlName="title"
+      placeholder="Título"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea 
+      formControlName="description"
+      placeholder="Descripción"
+      autocapitalize="true"
+      auto-grow="true"></ion-textarea>
+    </ion-item>
+    <div style="text-align: right;">
+      <ion-button 
+      shape="round"
+      color="primary"
+      fill="outline"
+      type="submit"
+      [disabled]="!tasks.valid">Añadir</ion-button>
+  </div>
+
+  <ion-button type="submit" shape="round" expand="full" 
+   (click)="shareviaFacebook()">
+   
+    Compartir vía WhatsApp   
+       
+    <ion-icon name="logo-whatsapp"></ion-icon>
+    
+  </ion-button>
+<ion-button type="submit" shape="round" expand="full" 
+   (click)="shareviaInstagram()">
+   
+    Compartir vía Instagram
+       
+    <ion-icon name="logo-instagram"></ion-icon>
+  </ion-button>
+  </form>
+</ion-content>

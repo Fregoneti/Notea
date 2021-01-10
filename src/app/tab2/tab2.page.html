@@ -1,17 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+  <ion-toolbar color="primary">
+   <!-- <ion-title>Añadir Tarea</ion-title> -->
+    <ion-title>{{addTaskString}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+    <ion-item style="margin-bottom: 40px;">
+      <ion-input type="text" 
+      formControlName="title"
+      placeholder="{{tituloString}}"></ion-input>
+    </ion-item>
+    <ion-item style="margin-top: 40px;">
+      <ion-textarea 
+      formControlName="description"
+      placeholder="{{descripcionString}}"
+      autocapitalize="true"
+      auto-grow="true"></ion-textarea>
+    </ion-item>
+    <div style="text-align: right;">
+      <ion-button 
+      shape="round"
+      color="primary"
+      fill="outline"
+      type="submit"
+      [disabled]="!tasks.valid">Añadir</ion-button>
+  </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+    <ion-item style="cursor: pointer;margin-top:100px;" (click)="onpickupClick()">
+      <ion-icon slot="start" name="locate"></ion-icon>
+      <ion-label position="stacked">{{gpsString}}</ion-label>
+       <ion-textarea  style="margin-top:20px;" >{{pickupLocation}}</ion-textarea>
+    </ion-item>
+  </form>
 </ion-content>

@@ -1,17 +1,54 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+  <ion-toolbar color="primary">
+    <!-- <ion-title>Perfil </ion-title> -->
+    <ion-title>{{profileString}}</ion-title>
+    
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+ <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <!-- <ion-label>Nombre</ion-label> -->
+        <ion-label>{{nombreString}}</ion-label> 
+      </ion-item-divider>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="user.avatar">
+        </ion-avatar>
+        <ion-label>{{user.name}}</ion-label>
+        <!-- <ion-button color="success" (click)="this.logout()">Cerrar Sesion</ion-button> -->
+        <ion-button color="success" (click)="this.logout()">{{logoutString}}</ion-button>
+      </ion-item> 
+
+    </ion-item-group>
+
+   <ion-list>
+     <ion-item>
+       <ion-icon slot="start" name="moon"> </ion-icon>
+      <!-- <ion-label>Cambiar Modo Oscuro</ion-label>  -->
+       <ion-label>{{darkModeString}}</ion-label> 
+       
+       <ion-toggle slot="end"[ngModel]="darkMode" (ionChange)="cambiodark()"></ion-toggle>
+     </ion-item>
+   </ion-list>
+
+   <ion-item>
+    <ion-icon name="language-outline"></ion-icon>
+     <!-- <ion-label>Cambiar idioma</ion-label> -->
+     <ion-label>{{languageString}}</ion-label> 
+    <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
+      <ion-select-option value="en">English</ion-select-option>
+      <ion-select-option value="es">Spanish</ion-select-option>
+    </ion-select>
+  </ion-item>
+    <!-- <ion-button style="margin-top: 50px;"  expand="full" fill="outline">Cambiar tema </ion-button> -->
+
+  </ion-list>
+
+ 
 </ion-content>

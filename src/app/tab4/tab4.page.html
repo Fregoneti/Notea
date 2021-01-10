@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{aboutString}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-list>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>{{fotoString}}</ion-label>
+      </ion-item-divider>
+
+      <ion-img src="../assets/icon/yo.jpg" style="text-align: center; margin: auto; width: 50%;  margin-top: 20px; "></ion-img>
+    </ion-item-group>
+
+
+
+
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label style="margin-bottom: 20px;">{{usuarioString}}</ion-label>
+      </ion-item-divider>
+
+      
+
+    </ion-item-group>
+
+
+ 
+
+
+
+      <ion-item color="warning">
+        <ion-label>
+            <h2>{{desarrolladorString}}</h2>
+            <ion-note color="dark">Carlos Aguilar Alférez</ion-note>
+        </ion-label>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item color="tertiary" href="https://instagram.com/carlosaguilara">
+        <ion-label>
+            <h2>Instagram</h2>
+            <ion-note color="dark">@carlosaguilara</ion-note>
+        </ion-label>
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-item>
+      <ion-item color="secondary" href="https://twitter.com/caaguilara">
+        <ion-label>
+            <h2>Twitter</h2>
+            <ion-note color="dark">@carlosaguilara</ion-note>
+        </ion-label>
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-item>
+      <ion-item color="danger">
+        <ion-label >
+            <h2>{{mailString}}</h2>
+            <ion-note color="dark">carlosaguilaralferez@gmail.com</ion-note>
+        </ion-label>
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-item>
+      
+    
+  
+
+  </ion-list>
+
+
+</ion-content>
