@@ -17,12 +17,16 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthService } from './services/auth.service';
 import { Vibration } from '@ionic-native/vibration/ngx';
-import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Globalization } from '@ionic-native/globalization/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+// import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
 
 
 export function HttpLoaderFactory(http:HttpClient){
@@ -53,13 +57,15 @@ export function HttpLoaderFactory(http:HttpClient){
   ],
   providers: [
     StatusBar,
+    //Geoposition,
     SplashScreen,
     NotasService,
     NativeStorage,
     GooglePlus,
+    NativeGeocoder,
     Globalization,
     Vibration,
-    NativeRingtones,,
+    NativeAudio,
     FilePath,
     SocialSharing,
     AuthService,

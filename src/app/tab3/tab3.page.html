@@ -1,7 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <!-- <ion-title>Perfil </ion-title> -->
-    <ion-title>{{profileString}}</ion-title>
+    <!-- <ion-title>{{profileString}}</ion-title> -->
+    <ion-title>{{'PROFILE' | translate}}</ion-title>
     
   
   </ion-toolbar>
@@ -13,7 +14,8 @@
     <ion-item-group>
       <ion-item-divider>
         <!-- <ion-label>Nombre</ion-label> -->
-        <ion-label>{{nombreString}}</ion-label> 
+        <!-- <ion-label>{{nombreString}}</ion-label> -->
+        <ion-label>{{'NAME' | translate}}</ion-label> 
       </ion-item-divider>
 
       <ion-item>
@@ -32,21 +34,28 @@
        <ion-icon slot="start" name="moon"> </ion-icon>
       <!-- <ion-label>Cambiar Modo Oscuro</ion-label>  -->
        <ion-label>{{darkModeString}}</ion-label> 
+       <ion-label>{{'DARKMODE' | translate}}</ion-label> 
        
        <ion-toggle slot="end"[ngModel]="darkMode" (ionChange)="cambiodark()"></ion-toggle>
      </ion-item>
    </ion-list>
-
+<!-- 
    <ion-item>
     <ion-icon name="language-outline"></ion-icon>
-     <!-- <ion-label>Cambiar idioma</ion-label> -->
+     <ion-label>Cambiar idioma</ion-label>
      <ion-label>{{languageString}}</ion-label> 
     <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
       <ion-select-option value="en">English</ion-select-option>
       <ion-select-option value="es">Spanish</ion-select-option>
     </ion-select>
   </ion-item>
-    <!-- <ion-button style="margin-top: 50px;"  expand="full" fill="outline">Cambiar tema </ion-button> -->
+     -->
+           
+     <ion-item color="primary" lines="none">
+      <ion-icon slot="start" name="flag" color="light"></ion-icon>
+      <ion-label style="font-size:0.95rem">{{"LANGUAGE" | translate}}</ion-label>
+     <ion-toggle slot="end" [(ngModel)]="langmenu" (ionChange)="changeLang($event)"></ion-toggle>
+     </ion-item>   
 
   </ion-list>
 

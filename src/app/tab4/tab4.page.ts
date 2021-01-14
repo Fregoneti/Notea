@@ -17,76 +17,80 @@ public mailString:string;
 
 
   constructor(private globalization: Globalization,
-    private _translate: TranslateService,) {  _translate.setDefaultLang('es');}
+    private _translate: TranslateService,) { 
+      // _translate.setDefaultLang('es');
+    //  _translate.setDefaultLang('es');
+    }
 
   ngOnInit() {
   }
 
-  //Lenguaje
+  // //Lenguaje
 
-  _initialiseTranslation(): void {
-    this._translate.get('PHOTO').subscribe((res: string) => {
-      this.fotoString = res;
-    });
-    this._translate.get('USER').subscribe((res: string) => {
-      this.usuarioString = res;
-    });
-    this._translate.get('DEVELOPER').subscribe((res: string) => {
-      this.desarrolladorString = res;
-    });
+  // _initialiseTranslation(): void {
+  //   this._translate.get('PHOTO').subscribe((res: string) => {
+  //     this.fotoString = res;
+  //   });
+  //   this._translate.get('USER').subscribe((res: string) => {
+  //     this.usuarioString = res;
+  //   });
+  //   this._translate.get('DEVELOPER').subscribe((res: string) => {
+  //     this.desarrolladorString = res;
+  //   });
 
-    this._translate.get('ABOUT').subscribe((res: string) => {
-      this.aboutString = res;
-    });
+  //   this._translate.get('ABOUT').subscribe((res: string) => {
+  //     this.aboutString = res;
+  //   });
 
     
-    this._translate.get('MAIL').subscribe((res: string) => {
-      this.mailString = res;
-    });
+  //   this._translate.get('MAIL').subscribe((res: string) => {
+  //     this.mailString = res;
+  //   });
   
     
     
 
-  }
+  // }
 
-  ionViewDidEnter(): void {
-    this.getDeviceLanguage()
-  }
+  // ionViewDidEnter(): void {
+  //   this.getDeviceLanguage();
+    
+  // }
 
-  public changeLanguage(): void {
-    this._translateLanguage();
-  }
+  // public changeLanguage(): void {
+  //   this._translateLanguage();
+  // }
   
-  _translateLanguage(): void {
-    this._translate.use(this.language);
-    this._initialiseTranslation();
-  }
+  // _translateLanguage(): void {
+  //   this._translate.use(this.language);
+  //   this._initialiseTranslation();
+  // }
 
-  _initTranslate(language) {
-    // Set the default language for translation strings, and the current language.
-    this._translate.setDefaultLang('en');
-    if (language) {
-      this.language = language;
-    }
-    else {
-      // Set your language here
-      this.language = 'en';
-    }
-    this._translateLanguage();
-  }
+  // _initTranslate(language) {
+  //   // Set the default language for translation strings, and the current language.
+  //   this._translate.setDefaultLang('es');
+  //   if (language) {
+  //     this.language = language;
+  //   }
+  //   else {
+  //     // Set your language here
+  //     this.language = 'en';
+  //   }
+  //   this._translateLanguage();
+  // }
 
-  getDeviceLanguage() {
-    if (window.Intl && typeof window.Intl === 'object') {
-      this._initTranslate(navigator.language)
-    }
-    else {
-      this.globalization.getPreferredLanguage()
-        .then(res => {
-          this._initTranslate(res.value)
-        })
-        .catch(e => {console.log(e);});
-    }
-  }
+  // getDeviceLanguage() {
+  //   if (window.Intl && typeof window.Intl === 'object') {
+  //     this._initTranslate(navigator.language)
+  //   }
+  //   else {
+  //     this.globalization.getPreferredLanguage()
+  //       .then(res => {
+  //         this._initTranslate(res.value)
+  //       })
+  //       .catch(e => {console.log(e);});
+  //   }
+  // }
 
 
 }

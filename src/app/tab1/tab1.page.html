@@ -1,9 +1,11 @@
 <ion-header   [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
-      {{taskString}}
+      <!-- {{taskString}} -->
+  {{"TASK" | translate}}
     </ion-title>
-
+    
+  
   </ion-toolbar>
 </ion-header>
 
@@ -16,14 +18,14 @@
   
   [animated]="true" 
   debounce="500"
-  placeholder="{{searchString}}"
+  placeholder="{{'SEARCH' | translate}}"
   [(ngModel)]="miBuscador"
   (ionInput)="getNotaSearchBar($event)"
   (ionCancel)="onCancel($event)">
 </ion-searchbar>
 
    <ion-list color="primary">
-     <ion-item-sliding  *ngFor="let nota of this.listaNotas;let i=index">
+     <ion-item-sliding  *ngFor="let nota of this.listaNotasBuscar;let i=index">
        <ion-item-options side="start" (ionSwipe)="this.alertBorraNota(nota.id)">
         <ion-item-option color="danger" expandable (click)="this.alertBorraNota(nota.id)">
           <ion-icon name="trash" style="font-size: x-large;" 
@@ -43,4 +45,9 @@
        </ion-item-options>
      </ion-item-sliding>
    </ion-list>
+
+   <ion-infinite-scroll #infiniteScroll threshold="10px" (ionInfinite)="updateRanking($event,false)">
+    <ion-infinite-scroll-content loadingSpinner="null" loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

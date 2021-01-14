@@ -1,39 +1,63 @@
-import {Component} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import { Router, NavigationExtras } from "@angular/router";
 import { Map, tileLayer, marker } from "leaflet";
 import {NativeGeocoder,NativeGeocoderOptions} from "@ionic-native/native-geocoder/ngx";
-
+import { Nota } from "src/app/model/nota";
+import { ModalController } from "@ionic/angular";
 @Component({
-  selector: "app-pickup-location",
-  templateUrl: "./pickup-location.page.html",
-  styleUrls: ["./pickup-location.page.scss"]
+  selector: 'app-location',
+  templateUrl: './location.page.html',
+  styleUrls: ['./location.page.scss'],
 })
-export class PickupLocationPage {
+export class LocationPage implements OnInit, OnDestroy {
+
+  @Input('nota') nota:Nota;
+  coor:any;
   map: Map;
   newMarker: any;
   address: string[];
-constructor(private geocoder: NativeGeocoder, private router: Router) {}
+constructor(private geocoder: NativeGeocoder, private router: Router, 
+  private modalController:ModalController,
+ ) {}
+  ngOnInit(): void {
+    console.log(this.nota);
+    
+    
+  }
+  ngOnDestroy(): void {
+    this.map.remove();
+  }
+
 ionViewDidEnter() {
+  console.log("entro");
+  
     this.loadMap();
   }
 loadMap() {
     this.map = new Map("mapId").setView([17.385, 78.4867], 13);
 tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
-        'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        'Francisco de los Rios'
     }).addTo(this.map);
   }
-locatePosition() {
+ locatePosition() {
+    //let coor = await this.geo.getCurrentPosition(succes);
     this.map.locate({ setView: true }).on("locationfound", (e: any) => {
       this.newMarker = marker([e.latitude, e.longitude], {
+        
         draggable: true
       }).addTo(this.map);
       this.newMarker.bindPopup("¡Te encuentras aquí!").openPopup();
       this.getAddress(e.latitude, e.longitude); // This line is added
-   
+      this.coor=e.latitude+" "+e.longitude;
+      console.log(this.coor);
+      
       this.newMarker.on("dragend", () => {
         const position = this.newMarker.getLatLng();
+        
         this.getAddress(position.lat, position.lng);// This line is added
+       // this.coor=e.latitude+" "+e.longitude;
+        console.log(this.coor);
        
       });
     });
@@ -47,6 +71,7 @@ locatePosition() {
     };
     this.geocoder.reverseGeocode(lat, long, options).then(results => {
       this.address = Object.values(results[0]).reverse();
+      console.log(this.address);
       
     });
   }
@@ -55,11 +80,15 @@ locatePosition() {
     let navigationextras: NavigationExtras = {
       state: {
         pickupLocation: this.address
+       
+        
       }
     };
-    this.router.navigate(["/tab1"], navigationextras);
+    this.modalController.dismiss(this.coor);
   }
-goBack() {
-    this.router.navigate(["/tab1"]);
+
+  goBack(){
+    this.modalController.dismiss;
   }
+
 }

@@ -4,6 +4,7 @@ import { LoadingController, ModalController, ToastController } from '@ionic/angu
 import { Nota } from 'src/app/model/nota';
 import { NotasService } from 'src/app/services/notas.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-edit-nota',
@@ -22,8 +23,10 @@ export class EditNotaPage{
     public loadingController: LoadingController,
     public toastController: ToastController,
     private modalController:ModalController,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private nativeAudio: NativeAudio
   ) {
+    this.nativeAudio.preloadSimple('edit', '../../assets/ringtones/edit.mp3');
     this.tasks=this.formBuilder.group({
       title:['',Validators.required],
       description:['']
@@ -31,7 +34,7 @@ export class EditNotaPage{
   }
   ionViewDidEnter(){
     this.tasks.get('title').setValue(this.nota.titulo);
-    this.tasks.get('description').setValue(this.nota.texto)
+    this.tasks.get('description').setValue(this.nota.texto);
   }
 
   public async sendForm(){
@@ -42,8 +45,11 @@ export class EditNotaPage{
     }
     this.notasS.actualizaNota(this.nota.id,data)
     .then((respuesta)=>{
+     
       this.loadingController.dismiss();
       this.presentToast("Nota guardada","success");
+      this.nativeAudio.play('uniqueId1', () => console.log('uniqueId1 is done playing'));
+      // this.nativeAudio.preloadSimple('edit', '../../assets/ringtones/edit.mp3');
       this.modalController.dismiss();
     })
     .catch((err)=>{
@@ -72,7 +78,7 @@ export class EditNotaPage{
   }
 
   shareviaWhatsapp(){
-    this.socialSharing.shareViaWhatsApp(this.nota.titulo,this.nota.texto)
+    this.socialSharing.shareViaWhatsApp("Título: "+this.nota.titulo+" Descripción:  "+this.nota.texto)
       .then((success) =>{
           alert("Success");
        })
@@ -81,14 +87,6 @@ export class EditNotaPage{
         });
     }
 
-    shareviaInstagram(){
-      this.socialSharing.shareViaInstagram(this.nota.titulo,this.nota.texto)
-        .then((success) =>{
-            alert("Success");
-          })
-          .catch(()=>{
-            alert("Could not share information");
-          });
-      }
-
+    
+    
 }

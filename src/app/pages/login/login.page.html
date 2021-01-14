@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<!-- <ion-header >
+  <ion-toolbar color="primary">
     <ion-title>Inicio de sesión</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,5 +14,34 @@
 <ion-content style="margin: 100px;" >
   <ion-button  color="primary" expand="full" (click)="this.login()">Login</ion-button>
   Pulse login para poder entrar en la App
-</ion-content>
+</ion-content> -->
 
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-title>Inicio de sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<hgroup>
+  <ion-img src="../assets/splash.svg" style="text-align: center; margin: auto; width: 20%;  margin-top: 40px; "></ion-img>
+  <h1>Design</h1>
+  <h3>By Carlos Aguilar Alférez</h3>
+</hgroup>
+
+<form>
+ 
+  <!-- <div class="group">
+    <input type="email"><span class="highlight"></span><span class="bar"></span>
+    <label>Email</label>
+  </div> -->
+  <center>
+  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" style="text-align:center; height: 50%;width: 50%;">
+
+  <button type="button" class="button buttonBlue" (click)="this.login()">Login GMAIL
+    <ion-icon name="logo-google"></ion-icon>
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+</center>
+</form>
+<footer>
+</footer>
