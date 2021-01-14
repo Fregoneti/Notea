@@ -30,37 +30,57 @@ export class Tab3Page {
   constructor(private authS:AuthService, private router:Router, private tran:TranslateModule, private _translate: TranslateService, private globalization: Globalization) {
     this.user=authS.user;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-   // _translate.setDefaultLang('es');
-   //_translate.setDefaultLang('es');
     this.darkMode=prefersDark.matches;
 console.log(environment.defaultLanguage == "en");
 
     
     this.langmenu = (environment.defaultLanguage == "en" ? false : true);
     
-  //   this._translate.addLangs(environment.currentLanguages);  //add all languages
-  //   this._translate.setDefaultLang(environment.defaultLanguage); //use default language
-  //   if (this._translate.getBrowserLang) {  //if browsers's language is avalaible is set up as default
-  //     if (environment.currentLanguages.includes(this._translate.getBrowserLang())) {
-  //       this._translate.use(this._translate.getBrowserLang());
-  //     }
-    
-  // }
+
 }
 
 
 
-
-changeLang(e) {
-  console.log(e.detail.checked);
-  if (e.detail.checked) {
+// Prueba
+// changeLang(e) {
+//   console.log(e.detail.checked);
+//   if (e.detail.checked) {
     
-    this._translate.use("es");
-  } else {
+//     this._translate.use("es");
+//   } else {
    
-    this._translate.use("en");
-  }
+//     this._translate.use("en");
+//   }
+// }
+
+
+public changeLanguage(): void {
+  this._translateLanguage();
 }
+
+_translateLanguage(): void {
+  this._translate.use(this.language);
+ 
+}
+
+_initTranslate(language) {
+  // Set the default language for translation strings, and the current language.
+  this._translate.setDefaultLang('en');
+  if (language) {
+    this.language = language;
+  }
+  else {
+    // Set your language here
+    this.language = 'en';
+  }
+  this._translateLanguage();
+}
+
+
+
+
+
+
   //Logout
   
   public async logout(){
